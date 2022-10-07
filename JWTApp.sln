@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWT.Api", "JWT.Api\JWT.Api.csproj", "{3C5435EE-A8A5-4B2D-8F32-0FC02FA70912}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWT.Library", "JWT.Library\JWT.Library.csproj", "{71C2810C-43C2-4EC0-8A35-7918502367A7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C5435EE-A8A5-4B2D-8F32-0FC02FA70912}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C5435EE-A8A5-4B2D-8F32-0FC02FA70912}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C5435EE-A8A5-4B2D-8F32-0FC02FA70912}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C5435EE-A8A5-4B2D-8F32-0FC02FA70912}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71C2810C-43C2-4EC0-8A35-7918502367A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71C2810C-43C2-4EC0-8A35-7918502367A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71C2810C-43C2-4EC0-8A35-7918502367A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71C2810C-43C2-4EC0-8A35-7918502367A7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CFB041CC-48B0-4CA8-9D3C-28F5B7C4240D}
+	EndGlobalSection
+EndGlobal
