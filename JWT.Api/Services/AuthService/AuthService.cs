@@ -52,7 +52,8 @@ public class AuthService : IAuthService
         {
             Username = request.Username,
             PasswordHash = passwordHash,
-            PasswordSalt = passwordSalt
+            PasswordSalt = passwordSalt,
+            Role = "User",
         };
 
         _context.Users.Add(user);
