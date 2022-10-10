@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace JWT.Api.Controllers;
 
@@ -9,17 +10,26 @@ namespace JWT.Api.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly IAuthService _authService;
+    private readonly DataContext _context;
 
-    public AuthController(IAuthService authService)
+    public AuthController(IAuthService authService, DataContext context)
     {
         _authService = authService;
+        _context = context;
     }
 
     [HttpPost]
     public async Task<ActionResult<User>> RegisterUser(UserDto request)
     {
-        var response = await _authService.RegisterUser(request);
-        return Ok(response);
+        var addingUser = await _context.Users.FirstOrDefaultAsync(u => u.Username == request.Username);
+        if (addingUser == null)
+        {
+            var response = await _authService.RegisterUser(request);
+            return Ok(response);
+        }
+        else {
+            return BadRequest();
+            }
     }
 
     [HttpPost("login")]

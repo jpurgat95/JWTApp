@@ -55,19 +55,19 @@ public class AuthService : IAuthService
             Role = "User",
         };
 
-        var addingUser = await _context.Users.FirstOrDefaultAsync(u => u.Username == request.Username);
+        //var addingUser = await _context.Users.FirstOrDefaultAsync(u => u.Username == request.Username);
 
-        if (addingUser == null)
-        {
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+        //if (addingUser == null)
+        //{
+        _context.Users.Add(user);
+        await _context.SaveChangesAsync();
 
-            return user;
-        }
-        else
-        {
-            return null;
-        }
+        return user;
+        //}
+        //else
+        //{
+        //    return null;
+        //}
 
     }
 
