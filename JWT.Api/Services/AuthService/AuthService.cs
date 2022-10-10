@@ -1,5 +1,4 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 
@@ -56,10 +55,20 @@ public class AuthService : IAuthService
             Role = "User",
         };
 
-        _context.Users.Add(user);
-        await _context.SaveChangesAsync();
+        var addingUser = await _context.Users.FirstOrDefaultAsync(u => u.Username == request.Username);
 
-        return user;
+        if (addingUser == null)
+        {
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            return user;
+        }
+        else
+        {
+            return null;
+        }
+
     }
 
     public async Task<AuthResponseDto> RefreshToken()
