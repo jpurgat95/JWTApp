@@ -1,5 +1,6 @@
 global using Blazored.LocalStorage;
 global using Microsoft.AspNetCore.Components.Authorization;
+global using Blazored.Toast;
 using JWT.Client;
 using JWT.Client.Services;
 using Microsoft.AspNetCore.Components.Web;
@@ -15,5 +16,6 @@ builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>
 builder.Services.AddAuthorizationCore();
 
 builder.Services.AddBlazoredLocalStorage();
+builder.Services.AddBlazoredToast();
 
 await builder.Build().RunAsync();
