@@ -3,6 +3,7 @@
 @inject AuthenticationStateProvider AuthStateProvider
 @inject ILocalStorageService LocalStorage
 @inject NavigationManager NavigationManager
+@inject IToastService toastService
 
 <h3>Login</h3>
 
@@ -19,11 +20,20 @@
 
     async Task HandleLogin()
     {
+
         var result = await Http.PostAsJsonAsync("api/auth/login", user);
-        var token = await result.Content.ReadAsStringAsync();
-        //Console.WriteLine(token);
-        await LocalStorage.SetItemAsync("token", token);
-        await AuthStateProvider.GetAuthenticationStateAsync();
-        NavigationManager.NavigateTo("");
+        if(result.IsSuccessStatusCode)
+        {
+            var token = await result.Content.ReadAsStringAsync();
+            //Console.WriteLine(token);
+            await LocalStorage.SetItemAsync("token", token);
+            await AuthStateProvider.GetAuthenticationStateAsync();
+            toastService.ShowSuccess("", "You successfully loged in!");
+            NavigationManager.NavigateTo("");
+        }
+        else
+        {
+            toastService.ShowError("Wrong user name or password","TRY AGAIN");
+        }
     }
 }

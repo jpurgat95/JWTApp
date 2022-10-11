@@ -1,6 +1,7 @@
 ﻿@inject NavigationManager NavigationManager
 @inject ILocalStorageService LocalStorage
 @inject AuthenticationStateProvider AuthStateProvider
+@inject IToastService toastService
 
 <AuthorizeView>
     <Authorized>
@@ -21,5 +22,6 @@
     {
         await LocalStorage.RemoveItemAsync("token");
         await AuthStateProvider.GetAuthenticationStateAsync();
+        toastService.ShowWarning("", "You loged out!");
     }
 }

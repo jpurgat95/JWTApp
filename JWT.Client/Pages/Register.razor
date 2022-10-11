@@ -3,6 +3,7 @@
 @inject AuthenticationStateProvider AuthStateProvider
 @inject ILocalStorageService LocalStorage
 @inject NavigationManager NavigationManager
+@inject IToastService toastService
 
 <h3>Register</h3>
 
@@ -12,7 +13,7 @@
     <label for="password">Password</label>
     <InputText id="password" @bind-Value="user.Password" type="password" />
     
-    <label for="password2">Password</label>
+    <label for="password2">Repeat Password</label>
     <InputText id="password2" @bind-Value="password2" type="password" />
     <button type="submit" class="btn btn-primary">Do it!</button>
 </EditForm>
@@ -35,12 +36,25 @@
                     await LocalStorage.SetItemAsync("token", token);
                     await AuthStateProvider.GetAuthenticationStateAsync();
                     NavigationManager.NavigateTo("");
+                    toastService.ShowSuccess("","You successfully loged in!");
                 }
+            }
+            else
+            {
+                WrongUser();
             }
         }
         else
         {
-           //alert to do
+            WrongPass();
         }
+    }
+    protected void WrongUser()
+    {
+        toastService.ShowError("", "User already exists!");
+    }
+    protected void WrongPass()
+    {
+        toastService.ShowError("", "Passwords are not the same, try again!");
     }
 }
